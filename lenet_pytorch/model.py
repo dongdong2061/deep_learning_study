@@ -10,7 +10,7 @@ Pytorch Tensor的通道排序:[batch,channel,height,width]
 class LeNet(nn.Module):
     def __init__(self):
         super(LeNet, self).__init__()
-        self.conv1 = nn.Conv2d(3, 16, 5)  #定义卷积层 3代表输入图像的维度，16代表卷积核数量 5代表卷积核15*15
+        self.conv1 = nn.Conv2d(3, 16, 5)  #定义卷积层 3代表输入图像的维度，16代表卷积核数量 5代表卷积核5*5
         self.pool1 = nn.MaxPool2d(2, 2) #池化核为2 stride为2，池化层只改变高度和宽度
         self.conv2 = nn.Conv2d(16, 32, 5)
         self.pool2 = nn.MaxPool2d(2, 2)
