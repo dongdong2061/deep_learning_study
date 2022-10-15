@@ -16,7 +16,7 @@ plt.imshow(img)
 #[N,C,H,W]
 img = data_transform(img)
 #expand batch dimension
-img = torch.unsqueeze(img,dim=0)
+img = torch.unsqueeze(img,dim=0) #主要是对数据维度进行扩充。第二个参数为0数据为行方向扩，为1列方向扩
 
 #read class_dict
 try:
