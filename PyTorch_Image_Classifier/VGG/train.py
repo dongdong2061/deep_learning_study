@@ -89,7 +89,7 @@ def main():
                 val_images,val_labels = val_data
                 outputs = VGGnet(val_images.to(device))
                 pred = torch.max(outputs,dim=1)[1]
-                acc += torch.eq(pred,outputs).sum().item()
+                acc += torch.eq(pred,val_labels.to(device)).sum().item()
 
         val_accurate = acc / val_num
         print("[epoch {}] train_loss :{:.3f} accurate:{:.3f}".format(epoch+1,running_loss/val_num,val_accurate))
