@@ -85,9 +85,9 @@ class GoogLeNet(nn.Module):
         self.inception4a = Inception(480,192,96,208,16,48,64)
         self.inception4b = Inception(512,160,112,224,24,64,64)
         self.inception4c = Inception(512,128,128,256,24,64,64)
-        self.inception4d = Inception(512,112,144,288,32,128,128)
+        self.inception4d = Inception(512,112,144,288,32,64,64)
         self.inception4e = Inception(528,256,160,320,32,128,128)
-        self.maxpool4 = nn.MaxPool2d(2,stride=2,ceil_mode=True)
+        self.maxpool4 = nn.MaxPool2d(3,stride=2,ceil_mode=True)
 
         self.inception5a = Inception(832,256,160,320,32,128,128)
         self.inception5b = Inception(832,384,192,384,48,128,128)
@@ -124,7 +124,7 @@ class GoogLeNet(nn.Module):
         x = self.inception4a(x)
         #Nx512x14x14
         if self.training and self.aux_logits:  #训练阶段才会使用
-            aux1 = self.aux1()
+            aux1 = self.aux1(x)
         
         x = self.inception4b(x)
         #N x 512 x 14 x 14
@@ -135,7 +135,7 @@ class GoogLeNet(nn.Module):
         if self.training and self.aux_logits:
             aux2 = self.aux2(x)
 
-        x = self.inception4a(x)
+        x = self.inception4e(x)
         #N x 832 x 14 x14
         x = self.maxpool4(x)
         #N x 832 x 7 x 7
