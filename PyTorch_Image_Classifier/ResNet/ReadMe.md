@@ -16,8 +16,18 @@
 
 网络达到一定深度后，模型性能会暂时陷入一个瓶颈很难增加，当网络继续加深后，模型在测试集上的性能反而会下降！这其实就是深度学习退化（degradation）！在**MobileNet V2**的论文中提到，由于非线性激活函数Relu的存在，每次输入到输出的过程都几乎是不可逆的，这也造成了许多**不可逆的信息损失**。
 
+#### 三、模型结构
+![image](https://user-images.githubusercontent.com/86656412/198867927-628e21c1-e29d-40b0-aefd-20330d7346af.png)
+![image](https://user-images.githubusercontent.com/86656412/198867929-90d55f14-b435-4ad7-b09b-e7681b6a65f0.png)
+
+
 **错误记录：**在编写代码运行的过程中，出现了运行几次的准确率为0.25上下，经过仔细排查后发现是在一个forward函数里的bn2层写为了bn1层，并未造成直接错误，但是导致模型训练错误严重。
 
 模型训练结果一
 
 这里通过迁移学习实现一次训练结果较好
+![image](https://user-images.githubusercontent.com/86656412/198867764-db6d32c3-17f6-43ac-8dae-6c0a8a80ef30.png)
+模型训练结果二
+
+这里同样利用迁移学习，epoch为3
+![image](https://user-images.githubusercontent.com/86656412/198867777-f91bb34b-c084-494c-a6f3-ab1546d7edc6.png)
